@@ -1,0 +1,9 @@
+name: ikt520-mqtt-assignment
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.12.9
+  - pip
+  - pip:
+    - paho-mqtt>=2.0.0 
