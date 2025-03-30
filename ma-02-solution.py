@@ -38,9 +38,6 @@ def task1() -> tuple[mqtt.Client, mqtt.Client]:
     
     print(f"Publisher client created with ID: {publisher._client_id.decode()}")
     print(f"Subscriber client created with ID: {subscriber._client_id.decode()}")
-    print("Arguments explanation:")
-    print("  - client_id: Unique identifier for the client")
-    print("  - clean_session: Whether to start with a clean state")
     
     return publisher, subscriber
 
@@ -59,40 +56,22 @@ def task2(publisher: mqtt.Client) -> None:
                   userdata: Any, 
                   flags: Dict[str, bool], 
                   rc: int) -> None:
-        """
-        Callback when client connects to broker.
-        
-        Args:
-            client: The client instance that connected
-            userdata: User data passed from constructor
-            flags: Response flags from broker (contains session_present)
-            rc: Result code (0 = success, others = errors)
-        """
+        """Callback when client connects to broker."""
         if rc == 0:
             print(f"Connected to broker with result code {rc}")
-            # Correctly access session_present as a dictionary key
             session_present = flags.get('session_present', False)
             print(f"Session present flag: {session_present}")
-            print("Explanation of parameters:")
-            print("  - client: The client instance that connected")
-            print("  - userdata: User data set when creating client")
-            print("  - flags: Dictionary with session_present flag")
-            print("  - rc: Connection result (0=success, other values=failure)")
         else:
             print(f"Failed to connect: {rc}")
     
     # Set the callback
     publisher.on_connect = on_connect
     
-    # Connect to broker with better error handling
+    # Connect to broker with error handling
     try:
         publisher.connect(host="localhost", port=1883, keepalive=60)
-        
-        # Start network loop to process network events
         publisher.loop_start()
-        
-        # Give time for connection to establish
-        time.sleep(1)
+        time.sleep(1)  # Give time for connection to establish
     except Exception as e:
         print(f"Error connecting to broker: {e}")
 
@@ -114,7 +93,6 @@ def task3(subscriber: mqtt.Client) -> None:
         """Callback when client connects to broker."""
         if rc == 0:
             print(f"Subscriber connected to broker with result code {rc}")
-            # Correctly access session_present as a dictionary key
             session_present = flags.get('session_present', False)
             print(f"Session present flag: {session_present}")
             
@@ -128,21 +106,8 @@ def task3(subscriber: mqtt.Client) -> None:
                     userdata: Any, 
                     mid: int, 
                     granted_qos: List[int]) -> None:
-        """
-        Callback when broker confirms subscription.
-        
-        Args:
-            client: The client instance that subscribed
-            userdata: User data passed from constructor
-            mid: Message ID for the subscribe request
-            granted_qos: List of QoS values granted by broker
-        """
+        """Callback when broker confirms subscription."""
         print(f"Subscribed with message ID {mid}, granted QoS: {granted_qos}")
-        print("Explanation of parameters:")
-        print("  - client: The client instance that subscribed")
-        print("  - userdata: User data set when creating client")
-        print("  - mid: Message ID of the subscribe request")
-        print("  - granted_qos: List of QoS levels granted by the broker")
     
     # Define on_message callback
     def on_message(client: mqtt.Client, 
@@ -162,12 +127,8 @@ def task3(subscriber: mqtt.Client) -> None:
     # Connect to broker
     try:
         subscriber.connect(host="localhost", port=1883, keepalive=60)
-        
-        # Start network loop to process network events
         subscriber.loop_start()
-        
-        # Give time for connection and subscription
-        time.sleep(2)
+        time.sleep(2)  # Give time for connection and subscription
     except Exception as e:
         print(f"Error connecting subscriber: {e}")
 
@@ -200,11 +161,6 @@ def task4(publisher: mqtt.Client) -> None:
         info.wait_for_publish()
         
         print(f"Published message '{payload}' to topic '{topic}'")
-        print("Explanation of parameters:")
-        print("  - topic: The topic to publish to")
-        print("  - payload: The message content")
-        print("  - qos: Quality of Service (0=at most once, 1=at least once, 2=exactly once)")
-        print("  - retain: Whether broker should store the message for future subscribers")
         
         # Wait to see if message is received
         time.sleep(2)
@@ -308,23 +264,12 @@ def task5(publisher: mqtt.Client) -> None:
         
         # Print results
         print("\nSingle-level wildcard (+) subscription results:")
-        print("Expected to match only topics with exactly one level between Sensors and Temperature")
         for msg in received_messages["task5_single"]:
             print(f"  - {msg}")
         
         print("\nMulti-level wildcard (#) subscription results:")
-        print("Expected to match all topics starting with Sensors/")
         for msg in received_messages["task5_multi"]:
             print(f"  - {msg}")
-        
-        # Explain wildcards
-        print("\nWildcard Explanation:")
-        print("  + (single-level): Matches exactly one topic level")
-        print("    Example: Sensors/+/Temperature matches Sensors/Living/Temperature")
-        print("    But not: Sensors/Kitchen/Temperature/Indoor (too many levels)")
-        print("  # (multi-level): Matches zero or more topic levels")
-        print("    Example: Sensors/# matches Sensors/Living/Temperature AND Sensors/Kitchen/Temperature/Indoor")
-        print("    But not: Weather/Outside/Temperature (different root)")
     
     except Exception as e:
         print(f"Error in wildcard test: {e}")
@@ -359,7 +304,6 @@ def task6() -> None:
                   userdata: Any, 
                   flags: Dict[str, bool], 
                   rc: int) -> None:
-        # Correctly access session_present as a dictionary key
         session_present = flags.get('session_present', False)
         print(f"Persistent subscriber connected, rc={rc}, session present={session_present}")
         
@@ -428,7 +372,6 @@ def task6() -> None:
         print("  - clean_session=False creates a persistent session")
         print("  - QoS 1 ensures messages are stored for offline clients")
         print("  - When client reconnects with same ID, broker delivers stored messages")
-        print("  - This demonstrates MQTT's reliability for intermittent connections")
     
     except Exception as e:
         print(f"Error in persistent session test: {e}")
@@ -460,7 +403,6 @@ def task7() -> None:
                   userdata: Any, 
                   flags: Dict[str, bool], 
                   rc: int) -> None:
-        # Correctly access session_present as a dictionary key
         session_present = flags.get('session_present', False)
         print(f"Non-persistent subscriber connected, rc={rc}, session present={session_present}")
         
@@ -525,7 +467,6 @@ def task7() -> None:
         print("  - clean_session=True creates a new session each time")
         print("  - All subscriptions and pending messages are deleted when client disconnects")
         print("  - QoS 1 guarantees delivery only for active sessions")
-        print("  - Since there was no persistent session, messages weren't stored for delivery")
     
     except Exception as e:
         print(f"Error in non-persistent session test: {e}")
@@ -556,7 +497,6 @@ def task8() -> None:
                   userdata: Any, 
                   flags: Dict[str, bool], 
                   rc: int) -> None:
-        # Correctly access session_present as a dictionary key
         session_present = flags.get('session_present', False)
         print(f"Subscriber connected, rc={rc}, session present={session_present}")
         
@@ -626,7 +566,6 @@ def task8() -> None:
         print("  - QoS 0 subscription doesn't support message storage")
         print("  - The subscription QoS level (0) determines storage behavior")
         print("  - Even though messages were published with QoS 2, they weren't stored")
-        print("  - This shows that the minimum QoS level (subscription or publish) determines the behavior")
     
     except Exception as e:
         print(f"Error in mixed QoS test: {e}")
