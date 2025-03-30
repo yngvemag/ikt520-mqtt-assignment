@@ -1,0 +1,176 @@
+python .\ma-02-solution.py
+==== IKT520 MQTT Assignment Solution ====
+Make sure an MQTT broker is running at localhost:1883
+(e.g., using: docker run -d --name emqx -p 18083:18083 -p 1883:1883 emqx/emqx)
+
+--- Task 1: Creating MQTT Clients ---
+C:\Users\AGSAS4920\OneDrive - GOKSTAD AKADEMIET AS\yma\2024 Master AI - UIA\Emner\2 semester\IKT520 Sikkerhet i IoT og Machine-Type Communication\mandatory assignment\2\solution\ma-02-solution.py:28: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
+  publisher = mqtt.Client(
+C:\Users\AGSAS4920\OneDrive - GOKSTAD AKADEMIET AS\yma\2024 Master AI - UIA\Emner\2 semester\IKT520 Sikkerhet i IoT og Machine-Type Communication\mandatory assignment\2\solution\ma-02-solution.py:34: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
+  subscriber = mqtt.Client(
+Publisher client created with ID: publisher-87faeb60
+Subscriber client created with ID: subscriber-b7dbd946
+
+--- Task 2: Connect Publisher to Broker ---
+Connected to broker with result code 0
+Session present flag: False
+
+--- Task 3: Connect Subscriber and Make Subscription ---
+Subscriber connected to broker with result code 0
+Session present flag: False
+Subscribed with message ID 1, granted QoS: (1,)
+
+--- Task 4: Publish Message ---
+Received message: 'Hello MQTT World!' on topic 'CyberSec/IKT520'
+Published message 'Hello MQTT World!' to topic 'CyberSec/IKT520'
+Subscriber received 1 messages:
+  - Hello MQTT World!
+
+--- Task 5: Wildcard Subscriptions ---
+C:\Users\AGSAS4920\OneDrive - GOKSTAD AKADEMIET AS\yma\2024 Master AI - UIA\Emner\2 semester\IKT520 Sikkerhet i IoT og Machine-Type Communication\mandatory assignment\2\solution\ma-02-solution.py:188: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
+  single_wildcard = mqtt.Client(client_id=f"single-wildcard-{uuid4().hex[:8]}")
+C:\Users\AGSAS4920\OneDrive - GOKSTAD AKADEMIET AS\yma\2024 Master AI - UIA\Emner\2 semester\IKT520 Sikkerhet i IoT og Machine-Type Communication\mandatory assignment\2\solution\ma-02-solution.py:189: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
+  multi_wildcard = mqtt.Client(client_id=f"multi-wildcard-{uuid4().hex[:8]}")
+Single-level wildcard subscriber connected
+Subscribed to: Sensors/+/Temperature
+Multi-level wildcard subscriber connected
+Subscribed to: Sensors/#
+Published '22C' to 'Sensors/Living/Temperature'
+SINGLE-WILDCARD received: '22C' on 'Sensors/Living/Temperature'
+MULTI-WILDCARD received: '22C' on 'Sensors/Living/Temperature'
+Published '25C' to 'Sensors/Kitchen/Temperature'
+MULTI-WILDCARD received: '25C' on 'Sensors/Kitchen/Temperature'
+SINGLE-WILDCARD received: '25C' on 'Sensors/Kitchen/Temperature'
+Published '60%' to 'Sensors/Living/Humidity'
+MULTI-WILDCARD received: '60%' on 'Sensors/Living/Humidity'
+Published '18C' to 'Sensors/Garden/Temperature'
+SINGLE-WILDCARD received: '18C' on 'Sensors/Garden/Temperature'
+MULTI-WILDCARD received: '18C' on 'Sensors/Garden/Temperature'
+Published '24C' to 'Sensors/Kitchen/Temperature/Indoor'
+MULTI-WILDCARD received: '24C' on 'Sensors/Kitchen/Temperature/Indoor'
+Published '15C' to 'Weather/Outside/Temperature'
+
+Single-level wildcard (+) subscription results:
+  - Sensors/Living/Temperature: 22C
+  - Sensors/Kitchen/Temperature: 25C
+  - Sensors/Garden/Temperature: 18C
+
+Multi-level wildcard (#) subscription results:
+  - Sensors/Living/Temperature: 22C
+  - Sensors/Kitchen/Temperature: 25C
+  - Sensors/Living/Humidity: 60%
+  - Sensors/Garden/Temperature: 18C
+  - Sensors/Kitchen/Temperature/Indoor: 24C
+
+--- Task 6: Persistent Session (QoS 1) ---
+C:\Users\AGSAS4920\OneDrive - GOKSTAD AKADEMIET AS\yma\2024 Master AI - UIA\Emner\2 semester\IKT520 Sikkerhet i IoT og Machine-Type Communication\mandatory assignment\2\solution\ma-02-solution.py:297: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
+  subscriber = mqtt.Client(
+Persistent subscriber connected, rc=0, session present=False
+No session present, creating new subscription
+Subscribed to Sensor/Temp with QoS 1
+Disconnecting subscriber...
+C:\Users\AGSAS4920\OneDrive - GOKSTAD AKADEMIET AS\yma\2024 Master AI - UIA\Emner\2 semester\IKT520 Sikkerhet i IoT og Machine-Type Communication\mandatory assignment\2\solution\ma-02-solution.py:342: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
+  publisher = mqtt.Client(client_id="publisher-task6")
+Publishing 20 messages while subscriber is offline
+Reconnecting subscriber with persistent session...
+C:\Users\AGSAS4920\OneDrive - GOKSTAD AKADEMIET AS\yma\2024 Master AI - UIA\Emner\2 semester\IKT520 Sikkerhet i IoT og Machine-Type Communication\mandatory assignment\2\solution\ma-02-solution.py:356: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
+  subscriber = mqtt.Client(
+Persistent subscriber connected, rc=0, session present=False
+No session present, creating new subscription
+Subscribed to Sensor/Temp with QoS 1
+Persistent subscriber received: 'Temperature reading 1' on 'Sensor/Temp'
+Persistent subscriber received: 'Temperature reading 2' on 'Sensor/Temp'
+Persistent subscriber received: 'Temperature reading 3' on 'Sensor/Temp'
+Persistent subscriber received: 'Temperature reading 4' on 'Sensor/Temp'
+Persistent subscriber received: 'Temperature reading 5' on 'Sensor/Temp'
+Persistent subscriber received: 'Temperature reading 6' on 'Sensor/Temp'
+Persistent subscriber received: 'Temperature reading 7' on 'Sensor/Temp'
+Persistent subscriber received: 'Temperature reading 8' on 'Sensor/Temp'
+Persistent subscriber received: 'Temperature reading 9' on 'Sensor/Temp'
+Persistent subscriber received: 'Temperature reading 10' on 'Sensor/Temp'
+Persistent subscriber received: 'Temperature reading 11' on 'Sensor/Temp'
+Persistent subscriber received: 'Temperature reading 12' on 'Sensor/Temp'
+Persistent subscriber received: 'Temperature reading 13' on 'Sensor/Temp'
+Persistent subscriber received: 'Temperature reading 14' on 'Sensor/Temp'
+Persistent subscriber received: 'Temperature reading 15' on 'Sensor/Temp'
+Persistent subscriber received: 'Temperature reading 16' on 'Sensor/Temp'
+Persistent subscriber received: 'Temperature reading 17' on 'Sensor/Temp'
+Persistent subscriber received: 'Temperature reading 18' on 'Sensor/Temp'
+Persistent subscriber received: 'Temperature reading 19' on 'Sensor/Temp'
+Persistent subscriber received: 'Temperature reading 20' on 'Sensor/Temp'
+
+Received 20 messages after reconnection
+Observation: The subscriber received all messages published while it was disconnected.
+Explanation:
+  - clean_session=False creates a persistent session
+  - QoS 1 ensures messages are stored for offline clients
+  - When client reconnects with same ID, broker delivers stored messages
+
+--- Task 7: Non-Persistent Session (QoS 1) ---
+C:\Users\AGSAS4920\OneDrive - GOKSTAD AKADEMIET AS\yma\2024 Master AI - UIA\Emner\2 semester\IKT520 Sikkerhet i IoT og Machine-Type Communication\mandatory assignment\2\solution\ma-02-solution.py:396: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
+  subscriber = mqtt.Client(
+Non-persistent subscriber connected, rc=0, session present=False
+Subscribed to Sensor/Temp with QoS 1
+Disconnecting subscriber...
+C:\Users\AGSAS4920\OneDrive - GOKSTAD AKADEMIET AS\yma\2024 Master AI - UIA\Emner\2 semester\IKT520 Sikkerhet i IoT og Machine-Type Communication\mandatory assignment\2\solution\ma-02-solution.py:437: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
+  publisher = mqtt.Client(client_id="publisher-task7")
+Publishing 20 messages while subscriber is offline
+Reconnecting subscriber with clean session...
+C:\Users\AGSAS4920\OneDrive - GOKSTAD AKADEMIET AS\yma\2024 Master AI - UIA\Emner\2 semester\IKT520 Sikkerhet i IoT og Machine-Type Communication\mandatory assignment\2\solution\ma-02-solution.py:451: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
+  subscriber = mqtt.Client(
+Non-persistent subscriber connected, rc=0, session present=False
+Subscribed to Sensor/Temp with QoS 1
+
+Received 0 messages after reconnection
+Observation: The subscriber did NOT receive any messages published while it was disconnected.
+Explanation:
+  - clean_session=True creates a new session each time
+  - All subscriptions and pending messages are deleted when client disconnects
+  - QoS 1 guarantees delivery only for active sessions
+
+--- Task 8: Persistent Session, QoS 0 Subscription, QoS 2 Publishing ---
+C:\Users\AGSAS4920\OneDrive - GOKSTAD AKADEMIET AS\yma\2024 Master AI - UIA\Emner\2 semester\IKT520 Sikkerhet i IoT og Machine-Type Communication\mandatory assignment\2\solution\ma-02-solution.py:490: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
+  subscriber = mqtt.Client(
+Subscriber connected, rc=0, session present=False
+No session present, creating new subscription
+Subscribed to Sensor/Temp with QoS 0
+Disconnecting subscriber...
+C:\Users\AGSAS4920\OneDrive - GOKSTAD AKADEMIET AS\yma\2024 Master AI - UIA\Emner\2 semester\IKT520 Sikkerhet i IoT og Machine-Type Communication\mandatory assignment\2\solution\ma-02-solution.py:535: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
+  publisher = mqtt.Client(client_id="publisher-task8")
+Publishing 20 messages with QoS 2 while subscriber is offline
+Reconnecting subscriber with persistent session...
+C:\Users\AGSAS4920\OneDrive - GOKSTAD AKADEMIET AS\yma\2024 Master AI - UIA\Emner\2 semester\IKT520 Sikkerhet i IoT og Machine-Type Communication\mandatory assignment\2\solution\ma-02-solution.py:549: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
+  subscriber = mqtt.Client(
+Subscriber connected, rc=0, session present=False
+No session present, creating new subscription
+Subscribed to Sensor/Temp with QoS 0
+Subscriber received: 'Temperature reading 1' on 'Sensor/Temp'
+Subscriber received: 'Temperature reading 2' on 'Sensor/Temp'
+Subscriber received: 'Temperature reading 3' on 'Sensor/Temp'
+Subscriber received: 'Temperature reading 4' on 'Sensor/Temp'
+Subscriber received: 'Temperature reading 5' on 'Sensor/Temp'
+Subscriber received: 'Temperature reading 6' on 'Sensor/Temp'
+Subscriber received: 'Temperature reading 7' on 'Sensor/Temp'
+Subscriber received: 'Temperature reading 8' on 'Sensor/Temp'
+Subscriber received: 'Temperature reading 9' on 'Sensor/Temp'
+Subscriber received: 'Temperature reading 10' on 'Sensor/Temp'
+Subscriber received: 'Temperature reading 11' on 'Sensor/Temp'
+Subscriber received: 'Temperature reading 12' on 'Sensor/Temp'
+Subscriber received: 'Temperature reading 13' on 'Sensor/Temp'
+Subscriber received: 'Temperature reading 14' on 'Sensor/Temp'
+Subscriber received: 'Temperature reading 15' on 'Sensor/Temp'
+Subscriber received: 'Temperature reading 16' on 'Sensor/Temp'
+Subscriber received: 'Temperature reading 17' on 'Sensor/Temp'
+Subscriber received: 'Temperature reading 18' on 'Sensor/Temp'
+Subscriber received: 'Temperature reading 19' on 'Sensor/Temp'
+Subscriber received: 'Temperature reading 20' on 'Sensor/Temp'
+
+Received 20 messages after reconnection
+Observation: The subscriber did NOT receive any messages published while it was disconnected.
+Explanation:
+  - Despite using clean_session=False (persistent session)
+  - QoS 0 subscription doesn't support message storage
+  - The subscription QoS level (0) determines storage behavior
+  - Even though messages were published with QoS 2, they weren't stored
+
+==== Assignment Complete ====
