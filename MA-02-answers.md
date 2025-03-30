@@ -33,7 +33,6 @@ subscriber = mqtt.Client(
 Publisher client created with ID: publisher-87faeb60
 Subscriber client created with ID: subscriber-b7dbd946
 ```
-<br><br><br><br><br><br><br><br><br><br>
 
 ## 2. Connect the publishing client to a Broker
 
