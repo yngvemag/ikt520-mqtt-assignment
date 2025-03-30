@@ -4,9 +4,9 @@ Make sure an MQTT broker is running at localhost:1883
 (e.g., using: docker run -d --name emqx -p 18083:18083 -p 1883:1883 emqx/emqx)
 
 --- Task 1: Creating MQTT Clients ---
-C:\Users\AGSAS4920\OneDrive - GOKSTAD AKADEMIET AS\yma\2024 Master AI - UIA\Emner\2 semester\IKT520 Sikkerhet i IoT og Machine-Type Communication\mandatory assignment\2\solution\ma-02-solution.py:28: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
+C:\IKT520 Sikkerhet i IoT og Machine-Type Communication\mandatory assignment\2\solution\ma-02-solution.py:28: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
   publisher = mqtt.Client(
-C:\Users\AGSAS4920\OneDrive - GOKSTAD AKADEMIET AS\yma\2024 Master AI - UIA\Emner\2 semester\IKT520 Sikkerhet i IoT og Machine-Type Communication\mandatory assignment\2\solution\ma-02-solution.py:34: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
+C:\IKT520 Sikkerhet i IoT og Machine-Type Communication\mandatory assignment\2\solution\ma-02-solution.py:34: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
   subscriber = mqtt.Client(
 Publisher client created with ID: publisher-87faeb60
 Subscriber client created with ID: subscriber-b7dbd946
@@ -27,9 +27,9 @@ Subscriber received 1 messages:
   - Hello MQTT World!
 
 --- Task 5: Wildcard Subscriptions ---
-C:\Users\AGSAS4920\OneDrive - GOKSTAD AKADEMIET AS\yma\2024 Master AI - UIA\Emner\2 semester\IKT520 Sikkerhet i IoT og Machine-Type Communication\mandatory assignment\2\solution\ma-02-solution.py:188: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
+C:\IKT520 Sikkerhet i IoT og Machine-Type Communication\mandatory assignment\2\solution\ma-02-solution.py:188: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
   single_wildcard = mqtt.Client(client_id=f"single-wildcard-{uuid4().hex[:8]}")
-C:\Users\AGSAS4920\OneDrive - GOKSTAD AKADEMIET AS\yma\2024 Master AI - UIA\Emner\2 semester\IKT520 Sikkerhet i IoT og Machine-Type Communication\mandatory assignment\2\solution\ma-02-solution.py:189: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
+C:\IKT520 Sikkerhet i IoT og Machine-Type Communication\mandatory assignment\2\solution\ma-02-solution.py:189: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
   multi_wildcard = mqtt.Client(client_id=f"multi-wildcard-{uuid4().hex[:8]}")
 Single-level wildcard subscriber connected
 Subscribed to: Sensors/+/Temperature
@@ -63,17 +63,17 @@ Multi-level wildcard (#) subscription results:
   - Sensors/Kitchen/Temperature/Indoor: 24C
 
 --- Task 6: Persistent Session (QoS 1) ---
-C:\Users\AGSAS4920\OneDrive - GOKSTAD AKADEMIET AS\yma\2024 Master AI - UIA\Emner\2 semester\IKT520 Sikkerhet i IoT og Machine-Type Communication\mandatory assignment\2\solution\ma-02-solution.py:297: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
+C:\IKT520 Sikkerhet i IoT og Machine-Type Communication\mandatory assignment\2\solution\ma-02-solution.py:297: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
   subscriber = mqtt.Client(
 Persistent subscriber connected, rc=0, session present=False
 No session present, creating new subscription
 Subscribed to Sensor/Temp with QoS 1
 Disconnecting subscriber...
-C:\Users\AGSAS4920\OneDrive - GOKSTAD AKADEMIET AS\yma\2024 Master AI - UIA\Emner\2 semester\IKT520 Sikkerhet i IoT og Machine-Type Communication\mandatory assignment\2\solution\ma-02-solution.py:342: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
+C:\IKT520 Sikkerhet i IoT og Machine-Type Communication\mandatory assignment\2\solution\ma-02-solution.py:342: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
   publisher = mqtt.Client(client_id="publisher-task6")
 Publishing 20 messages while subscriber is offline
 Reconnecting subscriber with persistent session...
-C:\Users\AGSAS4920\OneDrive - GOKSTAD AKADEMIET AS\yma\2024 Master AI - UIA\Emner\2 semester\IKT520 Sikkerhet i IoT og Machine-Type Communication\mandatory assignment\2\solution\ma-02-solution.py:356: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
+C:\IKT520 Sikkerhet i IoT og Machine-Type Communication\mandatory assignment\2\solution\ma-02-solution.py:356: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
   subscriber = mqtt.Client(
 Persistent subscriber connected, rc=0, session present=False
 No session present, creating new subscription
@@ -107,16 +107,16 @@ Explanation:
   - When client reconnects with same ID, broker delivers stored messages
 
 --- Task 7: Non-Persistent Session (QoS 1) ---
-C:\Users\AGSAS4920\OneDrive - GOKSTAD AKADEMIET AS\yma\2024 Master AI - UIA\Emner\2 semester\IKT520 Sikkerhet i IoT og Machine-Type Communication\mandatory assignment\2\solution\ma-02-solution.py:396: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
+C:\IKT520 Sikkerhet i IoT og Machine-Type Communication\mandatory assignment\2\solution\ma-02-solution.py:396: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
   subscriber = mqtt.Client(
 Non-persistent subscriber connected, rc=0, session present=False
 Subscribed to Sensor/Temp with QoS 1
 Disconnecting subscriber...
-C:\Users\AGSAS4920\OneDrive - GOKSTAD AKADEMIET AS\yma\2024 Master AI - UIA\Emner\2 semester\IKT520 Sikkerhet i IoT og Machine-Type Communication\mandatory assignment\2\solution\ma-02-solution.py:437: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
+C:\IKT520 Sikkerhet i IoT og Machine-Type Communication\mandatory assignment\2\solution\ma-02-solution.py:437: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
   publisher = mqtt.Client(client_id="publisher-task7")
 Publishing 20 messages while subscriber is offline
 Reconnecting subscriber with clean session...
-C:\Users\AGSAS4920\OneDrive - GOKSTAD AKADEMIET AS\yma\2024 Master AI - UIA\Emner\2 semester\IKT520 Sikkerhet i IoT og Machine-Type Communication\mandatory assignment\2\solution\ma-02-solution.py:451: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
+C:\IKT520 Sikkerhet i IoT og Machine-Type Communication\mandatory assignment\2\solution\ma-02-solution.py:451: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
   subscriber = mqtt.Client(
 Non-persistent subscriber connected, rc=0, session present=False
 Subscribed to Sensor/Temp with QoS 1
@@ -129,17 +129,17 @@ Explanation:
   - QoS 1 guarantees delivery only for active sessions
 
 --- Task 8: Persistent Session, QoS 0 Subscription, QoS 2 Publishing ---
-C:\Users\AGSAS4920\OneDrive - GOKSTAD AKADEMIET AS\yma\2024 Master AI - UIA\Emner\2 semester\IKT520 Sikkerhet i IoT og Machine-Type Communication\mandatory assignment\2\solution\ma-02-solution.py:490: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
+C:\IKT520 Sikkerhet i IoT og Machine-Type Communication\mandatory assignment\2\solution\ma-02-solution.py:490: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
   subscriber = mqtt.Client(
 Subscriber connected, rc=0, session present=False
 No session present, creating new subscription
 Subscribed to Sensor/Temp with QoS 0
 Disconnecting subscriber...
-C:\Users\AGSAS4920\OneDrive - GOKSTAD AKADEMIET AS\yma\2024 Master AI - UIA\Emner\2 semester\IKT520 Sikkerhet i IoT og Machine-Type Communication\mandatory assignment\2\solution\ma-02-solution.py:535: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
+C:\IKT520 Sikkerhet i IoT og Machine-Type Communication\mandatory assignment\2\solution\ma-02-solution.py:535: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
   publisher = mqtt.Client(client_id="publisher-task8")
 Publishing 20 messages with QoS 2 while subscriber is offline
 Reconnecting subscriber with persistent session...
-C:\Users\AGSAS4920\OneDrive - GOKSTAD AKADEMIET AS\yma\2024 Master AI - UIA\Emner\2 semester\IKT520 Sikkerhet i IoT og Machine-Type Communication\mandatory assignment\2\solution\ma-02-solution.py:549: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
+C:\IKT520 Sikkerhet i IoT og Machine-Type Communication\mandatory assignment\2\solution\ma-02-solution.py:549: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
   subscriber = mqtt.Client(
 Subscriber connected, rc=0, session present=False
 No session present, creating new subscription
