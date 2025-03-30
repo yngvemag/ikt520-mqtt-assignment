@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# ikt520-mqtt-assignment
-=======
 # MQTT Assignment
 
 This repository contains a solution for the IKT520 MQTT Mandatory Assignment (MA-02), implementing various aspects of the MQTT protocol using the `paho-mqtt` library in Python.
@@ -71,4 +68,3 @@ This project utilizes the following resources:
 ## Detailed Documentation
 
 For detailed explanations of each task and implementation details, please refer to the [solution/README.md](./solution/README.md).
->>>>>>> master
